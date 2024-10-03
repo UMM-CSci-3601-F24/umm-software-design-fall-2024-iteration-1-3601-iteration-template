@@ -1,0 +1,22 @@
+<p>This works!</p>
+
+<div
+  class="cell"
+  [ngClass]="{
+    'bold-top': edges.top,
+    'bold-right': edges.right,
+    'bold-bottom': edges.bottom,
+    'bold-left': edges.left
+  }"
+>
+  <input *ngIf="editable"
+         [(ngModel)]="value"
+         class="cell-input"
+         type="text"
+         maxlength="1"
+         [readonly]="!editable"
+         (input)="onInput(value)"
+         (keydown)="onKeyDown($event)"
+         placeholder="-">
+  <div *ngIf="!editable" class="cell-content">{{ value }}</div>
+</div>
