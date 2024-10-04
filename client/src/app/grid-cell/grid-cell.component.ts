@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -37,9 +37,9 @@ import { AsyncPipe, CommonModule } from '@angular/common';
   ],
 })
 export class GridCellComponent {
-  editable: boolean = true;
-  value: string = '';
-  edges: { top: boolean, right: boolean, bottom: boolean, left: boolean } = { top: false, right: false, bottom: false, left: false };
+  @Input() editable: boolean = true;
+  @Input() value: string = '';
+  @Input() edges: { top: boolean, right: boolean, bottom: boolean, left: boolean } = { top: false, right: false, bottom: false, left: false };
 
   onInput(value: string) {
     if (this.validateInput(value)) {
