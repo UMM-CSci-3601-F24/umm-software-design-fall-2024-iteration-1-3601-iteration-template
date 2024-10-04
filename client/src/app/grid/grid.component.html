@@ -1,5 +1,9 @@
 <p>grid works!</p>
 
+<input matInput
+  [(ngModel)]="nInput"
+  type="number"
+  (input)="onSizeInput(nInput)">
 
 <div class="grid-container">
   <div *ngFor="let row of gridRows; let rowIndex = index" class="grid-row">

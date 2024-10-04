@@ -19,7 +19,7 @@ import { GridCellComponent } from '../grid-cell/grid-cell.component';
 
 @Component({
   selector: 'app-grid-component',
-  templateUrl: './grid.component.html',
+  templateUrl: 'grid.component.html',
   styleUrls: ['./grid.component.scss'],
   standalone: true,
   providers: [],
@@ -43,11 +43,24 @@ import { GridCellComponent } from '../grid-cell/grid-cell.component';
 })
 export class GridComponent {
 
+  n: number = 10;
+  nInput: number;
   gridRows: number[];
   gridColumns: number[];
 
   constructor() {
-    this.gridRows = Array.from({ length: 5 }, (_, index) => index);
-    this.gridColumns = Array.from({ length: 5 }, (_, index) => index);
+    this.gridRows = Array.from({ length: this.n }, (_, index) => index);
+    this.gridColumns = Array.from({ length: this.n }, (_, index) => index);
   }
+
+  onSizeInput(nInput: number) {
+    console.log(this.n);
+      this.n = nInput;
+    console.log(this.n);
+    this.gridRows = Array.from({ length: this.n }, (_, index) => index);
+    this.gridColumns = Array.from({ length: this.n }, (_, index) => index);
+
+  }
+
+
 }
