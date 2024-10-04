@@ -12,6 +12,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink } from '@angular/router';
 import { AsyncPipe, CommonModule } from '@angular/common';
+import { GridCell } from './grid-cell';
+import { Edges } from './edges';
+
 
 @Component({
   selector: 'app-grid-cell',
@@ -33,19 +36,22 @@ import { AsyncPipe, CommonModule } from '@angular/common';
     MatButtonModule,
     MatTooltipModule,
     MatIconModule,
-    CommonModule
+    CommonModule,
   ],
 })
 export class GridCellComponent {
-  @Input() editable: boolean = true;
-  @Input() value: string = '';
-  @Input() edges: { top: boolean, right: boolean, bottom: boolean, left: boolean } = { top: false, right: false, bottom: false, left: false };
+
+
+  @Input() gridCell: GridCell;
+  // value: string;
+  // edges: { top: boolean; right: boolean; bottom: boolean; left: boolean; };
+  // editable: boolean;
 
   onInput(value: string) {
     if (this.validateInput(value)) {
-      this.value = value;
+      this.gridCell.value = value;
     } else {
-      this.value = '';
+      this.gridCell.value = '';
     }
   }
 
@@ -54,23 +60,23 @@ export class GridCellComponent {
     return regex.test(value);
   }
 
-  setEdges(edges: { top: boolean, right: boolean, bottom: boolean, left: boolean }) {
-    this.edges = edges;
+  setEdges(edges: Edges) {
+    this.gridCell.edges = edges;
   }
 
   setEditable(state: boolean) {
-    this.editable = state;
+    this.gridCell.editable = state;
   }
 
   onKeyDown(event: KeyboardEvent) {
-    if (this.editable && event.ctrlKey) {
+    if (this.gridCell.editable && event.ctrlKey) {
       event.preventDefault();
       switch (event.key) {
         case 'ArrowUp':
-          this.edges.top = !this.edges.top;
+          this.gridCell.edges.top = !this.edges.top; //gridCell instead of just edges
           break;
         case 'ArrowRight':
-          this.edges.right = !this.edges.right;
+          this.gridCell.edges.right = !this.edges.right;
           break;
         case 'ArrowDown':
           this.edges.bottom = !this.edges.bottom;

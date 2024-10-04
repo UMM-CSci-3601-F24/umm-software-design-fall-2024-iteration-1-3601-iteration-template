@@ -13,7 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink } from '@angular/router';
 import { AsyncPipe, CommonModule } from '@angular/common';
-
+import { GridCell } from '../grid-cell/grid-cell';
 import { GridCellComponent } from '../grid-cell/grid-cell.component';
 
 
@@ -45,21 +45,40 @@ export class GridComponent {
 
   n: number = 10;
   nInput: number;
-  gridRows: number[];
-  gridColumns: number[];
+  // grid: GridCellComponent[][];
+  grid: GridCell[][];
+  // gridColumns: number[];
 
   constructor() {
-    this.gridRows = Array.from({ length: this.n }, (_, index) => index);
-    this.gridColumns = Array.from({ length: this.n }, (_, index) => index);
+    this.initializeGrid();
   }
+
+  // defaultGridCell(): GridCell {
+  //   return {
+  //     editable: true,
+  //     value: '',
+  //     edges: { top: false, right: false, bottom: false, left: false },
+  //   };
+  // }
 
   onSizeInput(nInput: number) {
     console.log(this.n);
       this.n = nInput;
     console.log(this.n);
-    this.gridRows = Array.from({ length: this.n }, (_, index) => index);
-    this.gridColumns = Array.from({ length: this.n }, (_, index) => index);
+    this.initializeGrid();
+  }
 
+  initializeGrid() {
+    this.grid = new GridCell[this.n][this.n];
+
+    // Not 100% sure whether we need this. Someone should
+    // print `this.grid` out to the console before the loops
+    // and see if everything is initialized or not.
+    for (let row = 0; row < this.n; ++row) {
+      for (let col = 0; col < this.n; ++col) {
+        this.grid[row][col] = new GridCell();
+      }
+    }
   }
 
 

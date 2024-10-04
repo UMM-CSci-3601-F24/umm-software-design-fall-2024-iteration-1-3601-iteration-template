@@ -9,8 +9,8 @@
   <div *ngFor="let row of gridRows; let rowIndex = index" class="grid-row">
     <app-grid-cell
     *ngFor="let col of gridColumns; let colIndex = index"
-    [editable]="true"
-    [edges]="{ top: false, right: false, bottom: false, left: false }"
+    [cell]="grid[row][col]"
+
     ></app-grid-cell>
   </div>
 </div>
