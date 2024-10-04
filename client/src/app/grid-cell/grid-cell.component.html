@@ -15,6 +15,6 @@
     maxlength="1"
     (input)="onInput(value)"
     (keydown)="onKeyDown($event)"
-    placeholder="-">
+    placeholder="">
     <div *ngIf="!editable" class="cell-content">{{ value }}</div>
 </div>

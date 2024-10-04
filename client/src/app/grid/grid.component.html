@@ -1,1 +1,8 @@
 <p>grid works!</p>
+
+
+<div class="grid-container">
+  <div *ngFor="let row of gridRows; let rowIndex = index" class="grid-row">
+    <app-grid-cell *ngFor="let col of gridColumns; let colIndex = index"></app-grid-cell>
+  </div>
+</div>
