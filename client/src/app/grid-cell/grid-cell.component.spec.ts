@@ -8,8 +8,8 @@ describe('GridCellComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GridCellComponent],
-      imports: [FormsModule]
+      declarations: [],
+      imports: [FormsModule, GridCellComponent]
     })
     .compileComponents();
 
