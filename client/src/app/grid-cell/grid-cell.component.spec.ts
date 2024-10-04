@@ -28,10 +28,10 @@ describe('GridCellComponent', () => {
     const edges = { top: true, right: false, bottom: true, left: false };
     cell.setEdges(edges);
 
-    expect(cell.edges.top).toBeTrue();
-    expect(cell.edges.right).toBeFalse();
-    expect(cell.edges.bottom).toBeTrue();
-    expect(cell.edges.left).toBeFalse();
+    expect(cell.gridCell.edges.top).toBeTrue();
+    expect(cell.gridCell.edges.right).toBeFalse();
+    expect(cell.gridCell.edges.bottom).toBeTrue();
+    expect(cell.gridCell.edges.left).toBeFalse();
   });
 
   it('should allow input into the cell', () => {
@@ -48,7 +48,7 @@ describe('GridCellComponent', () => {
     inputElement.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    expect(component.value).toBe('A');
+    expect(component.gridCell.value).toBe('A');
   });
 
   it('should disallow input into the cell', () => {
@@ -113,7 +113,7 @@ describe('GridCellComponent', () => {
     fixture.detectChanges();
 
     const cellElement: HTMLElement = fixture.nativeElement.querySelector('.cell');
-    expect(component.edges.top).toBeTrue();
+    expect(component.gridCell.edges.top).toBeTrue();
     expect(cellElement.classList).toContain('bold-top');
     expect(cellElement.classList).not.toContain('bold-right');
     expect(cellElement.classList).not.toContain('bold-bottom');
@@ -124,7 +124,7 @@ describe('GridCellComponent', () => {
     inputElement.dispatchEvent(event);
     fixture.detectChanges();
 
-    expect(component.edges.top).toBeTrue();
+    expect(component.gridCell.edges.top).toBeTrue();
     expect(cellElement.classList).toContain('bold-top');
     expect(cellElement.classList).toContain('bold-right');
     expect(cellElement.classList).not.toContain('bold-bottom');
@@ -135,7 +135,7 @@ describe('GridCellComponent', () => {
     inputElement.dispatchEvent(event);
     fixture.detectChanges();
 
-    expect(component.edges.top).toBeTrue();
+    expect(component.gridCell.edges.top).toBeTrue();
     expect(cellElement.classList).toContain('bold-top');
     expect(cellElement.classList).toContain('bold-right');
     expect(cellElement.classList).toContain('bold-bottom');
@@ -146,7 +146,7 @@ describe('GridCellComponent', () => {
     inputElement.dispatchEvent(event);
     fixture.detectChanges();
 
-    expect(component.edges.top).toBeTrue();
+    expect(component.gridCell.edges.top).toBeTrue();
     expect(cellElement.classList).toContain('bold-top');
     expect(cellElement.classList).toContain('bold-right');
     expect(cellElement.classList).toContain('bold-bottom');

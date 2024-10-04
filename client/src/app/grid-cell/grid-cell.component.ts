@@ -42,7 +42,7 @@ import { Edges } from './edges';
 export class GridCellComponent {
 
 
-  @Input() gridCell: GridCell;
+  @Input({ required: true }) gridCell: GridCell;
   // value: string;
   // edges: { top: boolean; right: boolean; bottom: boolean; left: boolean; };
   // editable: boolean;
@@ -73,16 +73,16 @@ export class GridCellComponent {
       event.preventDefault();
       switch (event.key) {
         case 'ArrowUp':
-          this.gridCell.edges.top = !this.edges.top; //gridCell instead of just edges
+          this.gridCell.edges.top = !this.gridCell.edges.top; //gridCell instead of just edges
           break;
         case 'ArrowRight':
-          this.gridCell.edges.right = !this.edges.right;
+          this.gridCell.edges.right = !this.gridCell.edges.right;
           break;
         case 'ArrowDown':
-          this.edges.bottom = !this.edges.bottom;
+          this.gridCell.edges.bottom = !this.gridCell.edges.bottom;
           break;
         case 'ArrowLeft':
-          this.edges.left = !this.edges.left;
+          this.gridCell.edges.left = !this.gridCell.edges.left;
           break;
         default:
           break;

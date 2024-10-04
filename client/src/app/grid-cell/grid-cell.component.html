@@ -2,20 +2,23 @@
 <div
   class="cell"
   [ngClass]="{
-    'bold-top': edges.top,
-    'bold-right': edges.right,
-    'bold-bottom': edges.bottom,
-    'bold-left': edges.left
+    'bold-top': gridCell.edges.top,
+    'bold-right': gridCell.edges.right,
+    'bold-bottom': gridCell.edges.bottom,
+    'bold-left': gridCell.edges.left
   }"
 >
-  <input matInput *ngIf="editable"
-    [(ngModel)]="value"
+@if (gridCell.editable) {
+  <input matInput
+    [(ngModel)]="gridCell.value"
     class="cell-input"
     type="text"
     maxlength="1"
-    (input)="onInput(value)"
+    (input)="onInput(gridCell.value)"
     (keydown)="onKeyDown($event)"
     placeholder="">
-    <div *ngIf="!editable" class="cell-content">{{ value }}</div>
+}
+    @else {
+<div class="cell-content">{{ gridCell.value }}</div>
+}
 </div>
-gridCell. for everything

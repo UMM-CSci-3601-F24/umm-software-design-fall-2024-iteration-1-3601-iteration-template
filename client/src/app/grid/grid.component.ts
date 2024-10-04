@@ -69,17 +69,13 @@ export class GridComponent {
   }
 
   initializeGrid() {
-    this.grid = new GridCell[this.n][this.n];
-
-    // Not 100% sure whether we need this. Someone should
-    // print `this.grid` out to the console before the loops
-    // and see if everything is initialized or not.
-    for (let row = 0; row < this.n; ++row) {
-      for (let col = 0; col < this.n; ++col) {
-        this.grid[row][col] = new GridCell();
-      }
+    this.grid=[];
+      for(let row=0; row<this.n; ++row) {
+        this.grid.push([]);
+        for(let col=0; col<this.n; ++col) {
+          this.grid[row].push(new GridCell());
     }
+   }
   }
-
 
 }
