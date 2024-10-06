@@ -43,9 +43,12 @@ export class GridCellComponent {
 
 
   @Input({ required: true }) gridCell: GridCell;
-  // value: string;
-  // edges: { top: boolean; right: boolean; bottom: boolean; left: boolean; };
-  // editable: boolean;
+
+  constructor() {
+    if (!this.gridCell) {
+      this.gridCell = new GridCell;
+    }
+  }
 
   onInput(value: string) {
     if (this.validateInput(value)) {

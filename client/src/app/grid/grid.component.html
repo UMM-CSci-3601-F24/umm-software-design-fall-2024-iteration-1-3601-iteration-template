@@ -1,17 +1,20 @@
-<p>grid works!</p>
+<!-- <p>grid works!</p> -->
 
 <input matInput
   [(ngModel)]="nInput"
   type="number"
   (input)="onSizeInput(nInput)">
 
-<div class="grid-container">
-  <div *ngFor="let row of gridRows; let rowIndex = index" class="grid-row">
-    <app-grid-cell
-    *ngFor="let col of gridColumns; let colIndex = index"
-    [cell]="grid[row][col]"
-    ></app-grid-cell>
+  <div class="grid-container">
+    <div *ngFor="let row of grid; let rowIndex = index; trackBy: trackByRowIndex">
+      <div *ngFor="let cell of row; let colIndex = index; trackBy: trackByCellIndex"
+      tabindex="0"
+      [attr.data-row]="rowIndex"
+      [attr.data-col]="colIndex"
+      (keydown)="onKeydown($event, rowIndex, colIndex)">
+        <app-grid-cell [gridCell]="cell"></app-grid-cell>
+      </div>
+    </div>
   </div>
-</div>
 
 

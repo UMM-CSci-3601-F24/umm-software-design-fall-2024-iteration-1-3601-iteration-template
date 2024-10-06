@@ -45,9 +45,9 @@ export class GridComponent {
 
   n: number = 10;
   nInput: number;
-  // grid: GridCellComponent[][];
-  grid: GridCell[][];
-  // gridColumns: number[];
+  grid: GridCell[][] = [];
+  currentRow: number = 0;
+  currentCol: number = 0;
 
   constructor() {
     this.initializeGrid();
@@ -76,6 +76,35 @@ export class GridComponent {
           this.grid[row].push(new GridCell());
     }
    }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  trackByRowIndex(index: number, _item: GridCell[]): number {
+    return index;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  trackByCellIndex(index: number, _item: GridCell): number {
+    return index;
+  }
+
+  onKeydown(event: KeyboardEvent, rowIndex: number, colIndex: number) {
+    if (!event.ctrlKey) {
+      switch (event.key) {
+          case 'ArrowUp':
+            this.moveFocus(rowIndex - 1, colIndex);
+            break;
+          case 'ArrowDown':
+            this.moveFocus(rowIndex + 1, colIndex);
+            break;
+          case 'ArrowLeft':
+            this.moveFocus(rowIndex, colIndex - 1);
+            break;
+          case 'ArrowRight':
+            this.moveFocus(rowIndex, colIndex + 1);
+            break;
+        }
+      }
   }
 
 }
