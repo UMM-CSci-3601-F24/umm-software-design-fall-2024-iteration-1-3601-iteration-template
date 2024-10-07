@@ -11,6 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { RouterLink } from '@angular/router';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { GridCell } from '../grid-cell/grid-cell';
@@ -38,7 +39,8 @@ import { GridCellComponent } from '../grid-cell/grid-cell.component';
     MatTooltipModule,
     MatIconModule,
     CommonModule,
-    GridCellComponent
+    GridCellComponent,
+    MatGridListModule,
   ],
 })
 export class GridComponent {
@@ -48,6 +50,9 @@ export class GridComponent {
   grid: GridCell[][] = [];
   currentRow: number = 0;
   currentCol: number = 0;
+  rowIndex: number = 0;
+  colIndex: number = 0;
+
 
   constructor() {
     this.initializeGrid();
@@ -105,6 +110,9 @@ export class GridComponent {
             break;
         }
       }
+  }
+  moveFocus(rowIndex: number, arg1: number) {
+    throw new Error('Method not implemented.');
   }
 
 }
