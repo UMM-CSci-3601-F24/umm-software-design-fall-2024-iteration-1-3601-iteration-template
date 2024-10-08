@@ -15,7 +15,7 @@
             [gridCell]= ""
             (keydown)= "onKeydown($event, currentRow, currentCol)"
             (click)="onClick($event, rowIndex, colIndex)"
-            [attr.data-row]="rowIndex"
+            [attr.data-row]="colIndex"
             [attr.data-col]="colIndex"
             ></app-grid-cell>
           </mat-grid-tile>
