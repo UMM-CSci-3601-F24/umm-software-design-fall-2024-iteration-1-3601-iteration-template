@@ -1,11 +1,16 @@
 <!-- <p>grid works!</p> -->
+<input matInput
+  [(ngModel)]="cellSize"
+  type="number"
+  (input)="onUiScaleInput()"
+  placeholder="{{50}}">>
 
 <input matInput
   [(ngModel)]="n"
   type="number"
   (input)="onSizeInput()"
   placeholder="{{n}}">
-  <div [ngStyle]="{'height': (n * 40) + 'px', 'width': (n * 40) + 'px'}"  >
+  <div [ngStyle]="{'height': (n * cellSize) + 'px', 'width': (n * cellSize) + 'px'}"  >
     <mat-grid-list cols="{{n}}" rowHeight="1:1" gutterSize="0">
       @for (col of grid; track col; let colIndex = $index) {
         @for (cell of col; track cell; ; let rowIndex = $index) {

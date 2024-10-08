@@ -68,6 +68,10 @@ export class GridComponent {
     this.initializeGrid();
   }
 
+  onUiScaleInput() {
+    this.
+  }
+
   initializeGrid() {
     this.grid=[];
       for(let row=0; row<this.n; ++row) {

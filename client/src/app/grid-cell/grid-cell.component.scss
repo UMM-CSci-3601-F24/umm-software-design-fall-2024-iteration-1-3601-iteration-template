@@ -1,4 +1,4 @@
-$cellSize: 40px;
+$cellSize: "cellSize";
 $borderSize: calc(.125 * $cellSize);
 .cell {
   width:  $cellSize;
