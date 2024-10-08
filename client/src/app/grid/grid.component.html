@@ -13,7 +13,8 @@
             <app-grid-cell
             tabindex= "0"
             [gridCell]= ""
-            (keydown)= "onKeydown($event, currentCol, currentRow)"
+            (keydown)= "onKeydown($event, currentRow, currentCol)"
+            (click)="onClick($event, rowIndex, colIndex)"
             [attr.data-row]="rowIndex"
             [attr.data-col]="colIndex"
             ></app-grid-cell>
