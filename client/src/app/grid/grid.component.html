@@ -19,7 +19,7 @@
 
   </div> -->
 
-  <div class="grid-list-container" [ngStyle]="{'height': '10px'}"  >
+  <div [ngStyle]="{'height': (n * 40) + 'px', 'width': (n * 40) + 'px'}"  >
     <mat-grid-list cols="{{n}}" rowHeight="1:1" gutterSize="0">
       @for (row of grid; track rowIndex) {
         @for (cell of row; track colIndex) {
