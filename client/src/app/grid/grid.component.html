@@ -1,0 +1,28 @@
+<!-- <p>grid works!</p> -->
+
+<input matInput
+  [(ngModel)]="n"
+  type="number"
+  (input)="onSizeInput()"
+  placeholder="{{n}}">
+  <div [ngStyle]="{'height': (n * 40) + 'px', 'width': (n * 40) + 'px'}"  >
+    <mat-grid-list cols="{{n}}" rowHeight="1:1" gutterSize="0">
+      @for (col of grid; track col; let colIndex = $index) {
+        @for (cell of col; track cell; ; let rowIndex = $index) {
+          <mat-grid-tile Rowspan="1" Colspan="1" >
+            <app-grid-cell
+            tabindex= "0"
+            [gridCell]= ""
+            (keydown)= "onKeydown($event, currentRow, currentCol)"
+            (click)="onClick($event, rowIndex, colIndex)"
+            [attr.data-row]="colIndex"
+            [attr.data-col]="colIndex"
+            ></app-grid-cell>
+          </mat-grid-tile>
+        }
+      }
+    </mat-grid-list>
+  </div>
+
+
+
