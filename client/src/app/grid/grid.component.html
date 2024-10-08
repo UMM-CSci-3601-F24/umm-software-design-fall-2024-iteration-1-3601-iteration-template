@@ -1,34 +1,27 @@
 <!-- <p>grid works!</p> -->
 
 <input matInput
-  [(ngModel)]="nInput"
+  [(ngModel)]="n"
   type="number"
-  (input)="onSizeInput(nInput)">
-
-  <!-- <div class="grid-container">
-    <div *ngFor="let row of grid; let rowIndex = index; trackBy: trackByRowIndex">
-      <div *ngFor="let cell of row; let colIndex = index; trackBy: trackByCellIndex"
-      tabindex="0"
-      [attr.data-row]="rowIndex"
-      [attr.data-col]="colIndex"
-      (keydown)="onKeydown($event, rowIndex, colIndex)">
-        <app-grid-cell [gridCell]="cell"></app-grid-cell>
-      </div>
-    </div>
-
-
-  </div> -->
-
+  (input)="onSizeInput()"
+  placeholder="{{n}}">
   <div [ngStyle]="{'height': (n * 40) + 'px', 'width': (n * 40) + 'px'}"  >
     <mat-grid-list cols="{{n}}" rowHeight="1:1" gutterSize="0">
-      @for (row of grid; track rowIndex) {
-        @for (cell of row; track colIndex) {
+      @for (col of grid; track col; let colIndex = $index) {
+        @for (cell of col; track cell; ; let rowIndex = $index) {
           <mat-grid-tile Rowspan="1" Colspan="1" >
-            <app-grid-cell [gridCell]=""></app-grid-cell>
+            <app-grid-cell
+            tabindex= "0"
+            [gridCell]= ""
+            (keydown)= "onKeydown($event, currentRow, currentCol)"
+            [attr.data-row]="rowIndex"
+            [attr.data-col]="colIndex"
+            ></app-grid-cell>
           </mat-grid-tile>
         }
       }
     </mat-grid-list>
   </div>
+
 
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -46,15 +46,12 @@ import { GridCellComponent } from '../grid-cell/grid-cell.component';
 export class GridComponent {
 
   n: number = 10;
-  nInput: number;
   grid: GridCell[][] = [];
   currentRow: number = 0;
   currentCol: number = 0;
-  rowIndex: number = 0;
-  colIndex: number = 0;
 
 
-  constructor() {
+  constructor(private renderer: Renderer2, private elRef: ElementRef) {
     this.initializeGrid();
   }
 
@@ -66,9 +63,7 @@ export class GridComponent {
   //   };
   // }
 
-  onSizeInput(nInput: number) {
-    console.log(this.n);
-      this.n = nInput;
+  onSizeInput() {
     console.log(this.n);
     this.initializeGrid();
   }
@@ -83,36 +78,36 @@ export class GridComponent {
    }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  trackByRowIndex(index: number, _item: GridCell[]): number {
-    return index;
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  trackByCellIndex(index: number, _item: GridCell): number {
-    return index;
-  }
-
   onKeydown(event: KeyboardEvent, rowIndex: number, colIndex: number) {
     if (!event.ctrlKey) {
       switch (event.key) {
           case 'ArrowUp':
-            this.moveFocus(rowIndex - 1, colIndex);
+            this.moveFocus(colIndex, rowIndex - 1);
             break;
           case 'ArrowDown':
-            this.moveFocus(rowIndex + 1, colIndex);
+            this.moveFocus(colIndex, rowIndex + 1);
             break;
           case 'ArrowLeft':
-            this.moveFocus(rowIndex, colIndex - 1);
+            this.moveFocus(colIndex - 1, rowIndex);
             break;
           case 'ArrowRight':
-            this.moveFocus(rowIndex, colIndex + 1);
+            this.moveFocus(colIndex + 1, rowIndex);
             break;
         }
       }
   }
-  moveFocus(rowIndex: number, arg1: number) {
-    throw new Error('Method not implemented.');
-  }
+  moveFocus(row: number, col: number) {
+    if (row >= 0 && row < this.grid.length && col >= 0 && col < this.grid[row].length) {
+      this.currentCol = col;
+      this.currentRow = row;
+      console.log(row, col);
 
+      const cell = document.querySelector(`app-grid-cell[data-row="${row}"][data-col="${col}"] input`);
+      console.log(cell);
+
+      if (cell) {
+        (cell as HTMLElement).focus();
+      }
+    }
+  }
 }
