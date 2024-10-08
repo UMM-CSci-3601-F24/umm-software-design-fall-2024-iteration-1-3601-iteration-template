@@ -78,7 +78,7 @@ export class GridComponent {
    }
   }
 
-  onKeydown(event: KeyboardEvent, rowIndex: number, colIndex: number) {
+  onKeydown(event: KeyboardEvent, colIndex: number, rowIndex: number) {
     if (!event.ctrlKey) {
       switch (event.key) {
           case 'ArrowUp':
@@ -96,13 +96,14 @@ export class GridComponent {
         }
       }
   }
-  moveFocus(row: number, col: number) {
-    if (row >= 0 && row < this.grid.length && col >= 0 && col < this.grid[row].length) {
+  moveFocus(col: number, row: number) {
+    if (col >= 0 && col < this.grid.length && row >= 0 && row < this.grid[col].length) {
       this.currentCol = col;
       this.currentRow = row;
-      console.log(row, col);
 
-      const cell = document.querySelector(`app-grid-cell[data-row="${row}"][data-col="${col}"] input`);
+      console.log(col, row);
+
+      const cell = document.querySelector(`app-grid-cell[data-row="${col}"][data-col="${row}"] input`);
       console.log(cell);
 
       if (cell) {
