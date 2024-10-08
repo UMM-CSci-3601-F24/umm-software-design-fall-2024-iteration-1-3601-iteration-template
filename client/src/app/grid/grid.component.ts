@@ -82,23 +82,23 @@ export class GridComponent {
 
 
   onClick(event: MouseEvent, rowIndex: number, colIndex: number) {
-    this.moveFocus(colIndex, rowIndex);
+    this.moveFocus(rowIndex, colIndex);
   }
 
   onKeydown(event: KeyboardEvent, colIndex: number, rowIndex: number) {
     if (!event.ctrlKey) {
       switch (event.key) {
           case 'ArrowUp':
-            this.moveFocus(colIndex, rowIndex - 1);
+            this.moveFocus(rowIndex, colIndex - 1);
             break;
           case 'ArrowDown':
-            this.moveFocus(colIndex, rowIndex + 1);
+            this.moveFocus(rowIndex, colIndex + 1);
             break;
           case 'ArrowLeft':
-            this.moveFocus(colIndex - 1, rowIndex);
+            this.moveFocus(rowIndex - 1, colIndex);
             break;
           case 'ArrowRight':
-            this.moveFocus(colIndex + 1, rowIndex);
+            this.moveFocus(rowIndex + 1, colIndex);
             break;
         }
       }
