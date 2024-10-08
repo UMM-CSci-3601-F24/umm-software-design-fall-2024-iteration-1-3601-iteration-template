@@ -78,6 +78,12 @@ export class GridComponent {
    }
   }
 
+
+
+  onClick(event: MouseEvent, rowIndex: number, colIndex: number) {
+    this.moveFocus(colIndex, rowIndex);
+  }
+
   onKeydown(event: KeyboardEvent, rowIndex: number, colIndex: number) {
     if (!event.ctrlKey) {
       switch (event.key) {
