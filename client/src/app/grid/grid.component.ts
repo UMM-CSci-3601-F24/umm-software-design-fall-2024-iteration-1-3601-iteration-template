@@ -49,19 +49,13 @@ export class GridComponent {
   grid: GridCell[][] = [];
   currentRow: number = 0;
   currentCol: number = 0;
-
+  typeDirection: string = "right";
+  typingDirections: string[] = ["right", "left", "up", "down"];
+  currentDirectionIndex: number = 0;
 
   constructor(private renderer: Renderer2, private elRef: ElementRef) {
     this.initializeGrid();
   }
-
-  // defaultGridCell(): GridCell {
-  //   return {
-  //     editable: true,
-  //     value: '',
-  //     edges: { top: false, right: false, bottom: false, left: false },
-  //   };
-  // }
 
   onSizeInput() {
     console.log(this.n);
@@ -86,6 +80,9 @@ export class GridComponent {
   }
 
   onKeydown(event: KeyboardEvent, row: number, col: number) {
+    const cell = this.grid[col][row];
+    const inputElement = this.elRef.nativeElement.querySelector(`app-grid-cell[data-col="${col}"][data-row="${row}"] input`);
+
     if (!event.ctrlKey) {
       switch (event.key) {
           case 'ArrowUp':
@@ -100,6 +97,26 @@ export class GridComponent {
           case 'ArrowRight':
             this.moveFocus(col + 1, row);
             break;
+          default:
+            if (event.key.length === 1 && event.key.match(/[a-zA-Z]/)) {
+              cell.value = event.key;
+              if (inputElement) {
+                this.renderer.setProperty(inputElement, 'value', event.key);
+              }
+              if (this.typeDirection === "right") {
+                setTimeout(() => this.moveFocus(col + 1, row), 0);
+              }
+              if (this.typeDirection === "left") {
+                setTimeout(() => this.moveFocus(col - 1, row), 0);
+              }
+              if (this.typeDirection === "up") {
+                setTimeout(() => this.moveFocus(col, row - 1), 0);
+              }
+              if (this.typeDirection === "down") {
+                setTimeout(() => this.moveFocus(col, row + 1), 0);
+              }
+            }
+            break;
         }
       }
   }
@@ -110,12 +127,18 @@ export class GridComponent {
 
       console.log(col, row);
 
-      const cell = document.querySelector(`app-grid-cell[data-row="${col}"][data-col="${row}"] input`);
+      const cell = document.querySelector(`app-grid-cell[data-col="${col}"][data-row="${row}"] input`);
       console.log(cell);
 
       if (cell) {
         (cell as HTMLElement).focus();
       }
     }
+  }
+
+  cycleTypingDirection() {
+    this.currentDirectionIndex = (this.currentDirectionIndex + 1) % this.typingDirections.length;
+    this.typeDirection = this.typingDirections[this.currentDirectionIndex];
+    console.log(`Typing direction changed to: ${this.typeDirection}`);
   }
 }
