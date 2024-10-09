@@ -97,6 +97,24 @@ export class GridComponent {
           case 'ArrowRight':
             this.moveFocus(col + 1, row);
             break;
+          case 'Backspace':
+            cell.value = event.key;
+            if (inputElement) {
+              this.renderer.setProperty(inputElement, 'value', '');
+            }
+            if (this.typeDirection === "right") {
+              setTimeout(() => this.moveFocus(col - 1, row), 0);
+            }
+            if (this.typeDirection === "left") {
+              setTimeout(() => this.moveFocus(col + 1, row), 0);
+            }
+            if (this.typeDirection === "up") {
+              setTimeout(() => this.moveFocus(col, row + 1), 0);
+            }
+            if (this.typeDirection === "down") {
+              setTimeout(() => this.moveFocus(col, row - 1), 0);
+            }
+            break;
           default:
             if (event.key.length === 1 && event.key.match(/[a-zA-Z]/)) {
               cell.value = event.key;
@@ -117,6 +135,16 @@ export class GridComponent {
               }
             }
             break;
+        }
+      } else{
+        if (event.ctrlKey) {
+          switch (event.key) {
+            case 'Backspace':
+            cell.value = event.key;
+            if (inputElement) {
+              this.renderer.setProperty(inputElement, 'value', '');
+            }
+        }
         }
       }
   }
