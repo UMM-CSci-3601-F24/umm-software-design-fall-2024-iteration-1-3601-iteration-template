@@ -1,16 +1,15 @@
 <!-- <p>grid works!</p> -->
 <input matInput
-  [(ngModel)]="cellSize"
-  type="number"
-  (input)="onUiScaleInput()"
-  placeholder="{{50}}">>
-
-<input matInput
   [(ngModel)]="n"
   type="number"
   (input)="onSizeInput()"
   placeholder="{{n}}">
-  <div [ngStyle]="{'height': (n * cellSize) + 'px', 'width': (n * cellSize) + 'px'}"  >
+  <input matInput
+  [(ngModel)]="m"
+  type="number"
+  placeholder="{{m}}">
+
+  <div [ngStyle]="{'height': (n * m) + 'px', 'width': (n * m) + 'px'}"  >
     <mat-grid-list cols="{{n}}" rowHeight="1:1" gutterSize="0">
       @for (col of grid; track col; let colIndex = $index) {
         @for (cell of col; track cell; ; let rowIndex = $index) {
@@ -21,12 +20,12 @@
             (keydown)= "onKeydown($event, currentCol, currentRow)"
             [attr.data-row]="rowIndex"
             [attr.data-col]="colIndex"
+            [ngStyle]="{'height': '80px', 'width': '80px'}"
             ></app-grid-cell>
           </mat-grid-tile>
         }
       }
     </mat-grid-list>
   </div>
-
 
 

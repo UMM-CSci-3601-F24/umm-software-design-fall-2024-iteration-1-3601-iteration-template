@@ -46,6 +46,8 @@ import { GridCellComponent } from '../grid-cell/grid-cell.component';
 export class GridComponent {
 
   n: number = 10;
+  m: number = 40;
+
   grid: GridCell[][] = [];
   currentRow: number = 0;
   currentCol: number = 0;
@@ -68,9 +70,9 @@ export class GridComponent {
     this.initializeGrid();
   }
 
-  onUiScaleInput() {
-    this.
-  }
+  // onUiScaleInput() {
+  //   this.
+  // }
 
   initializeGrid() {
     this.grid=[];
