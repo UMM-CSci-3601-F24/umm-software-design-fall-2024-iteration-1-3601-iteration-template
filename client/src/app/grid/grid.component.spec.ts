@@ -25,7 +25,7 @@ describe('GridCellComponent', () => {
 
   it('should initialize grid correctly', () => {
     expect(component.grid.length).toBe(component.n);
-    for (let row of component.grid) {
+    for (const row of component.grid) {
       expect(row.length).toBe(component.n);
     }
   });
@@ -34,7 +34,7 @@ describe('GridCellComponent', () => {
     component.n = 5;
     component.onSizeInput();
     expect(component.grid.length).toBe(5);
-    for (let row of component.grid) {
+    for (const row of component.grid) {
       expect(row.length).toBe(5);
     }
   });
